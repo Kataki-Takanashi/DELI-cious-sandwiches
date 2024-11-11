@@ -1,9 +1,9 @@
 package com.pluralsight.enums;
 
 public enum BreadSize {
-    FOUR_INCH(4.00),
-    EIGHT_INCH(6.00),
-    TWELVE_INCH(8.00);
+    FOUR_INCH(5.50),
+    EIGHT_INCH(7.00),
+    TWELVE_INCH(8.50);
 
     private double price;
 

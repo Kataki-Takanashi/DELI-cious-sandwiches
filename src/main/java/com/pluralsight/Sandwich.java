@@ -1,11 +1,11 @@
 package com.pluralsight;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Sandwich {
     Bread bread;
-    List<Topping> toppings;
+    Set<Topping> toppings; // This is a set to avoid duplicate toppings
     boolean isToasted;
 
     /**
@@ -18,7 +18,7 @@ public class Sandwich {
         this(null, null, false);
     }
 
-    public Sandwich(Bread bread, List<Topping> toppings, boolean isToasted) {
+    public Sandwich(Bread bread, Set<Topping> toppings, boolean isToasted) {
         this.bread = bread;
         this.toppings = toppings;
         this.isToasted = isToasted;
@@ -32,17 +32,17 @@ public class Sandwich {
         this.bread = bread;
     }
 
-    public List<Topping> getToppings() {
+    public Set<Topping> getToppings() {
         return toppings;
     }
 
-    public void setToppings(List<Topping> toppings) {
+    public void setToppings(Set<Topping> toppings) {
         this.toppings = toppings;
     }
 
     public void addTopping(Topping topping) {
         if (toppings == null) {
-            toppings = new ArrayList<>();
+            toppings = new HashSet<>();
         }
         toppings.add(topping);
     }

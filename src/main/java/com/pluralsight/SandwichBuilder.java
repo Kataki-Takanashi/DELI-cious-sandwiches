@@ -12,7 +12,7 @@ public class SandwichBuilder {
     private Sandwich sandwich = new Sandwich();
     Bread bread = new Bread();
 
-    public void sandwichScreen() {
+    public Sandwich sandwichScreen() {
         int userSelection = 0;
 
         do {
@@ -37,15 +37,16 @@ public class SandwichBuilder {
                         break;
                     case 5:
                         // Complete sandwich
-                        break;
+                        return sandwich;
                     case 0:
                         System.out.println("Canceling Sandwich Creation...");
-                        break;
+                        return null;
                 }
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         } while (userSelection != 0 && userSelection != 5);
+        return null; // Consider making exception
     }
 
     private int displaySandwichMenu() throws IllegalArgumentException {
@@ -58,7 +59,7 @@ public class SandwichBuilder {
                 : "[not selected]";
 
         String sandwichToppings = (sandwich.getToppings() != null && sandwich.getToppings().size() > 0)
-                ? sandwich.getToppings().toString().replaceAll("_", " ")
+                ? sandwich.getToppings().toString().replaceAll("_", " ") // Get rid of underscores like in "ROAST_BEEF"
                 : "[not selected]";
 
         String toastedStatus = sandwich.isToasted() 

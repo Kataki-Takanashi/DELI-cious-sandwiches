@@ -78,6 +78,22 @@ public class Topping {
         return isExtra;
     }
 
+    public Meat getMeat() {
+        return meat;
+    }
+
+    public Cheese getCheese() {
+        return cheese;
+    }
+
+    public Regular getRegular() {
+        return regular;
+    }
+
+    public Sauce getSauce() {
+        return sauce;
+    }
+
     @Override
     public String toString() {
         if (meat != null) {
