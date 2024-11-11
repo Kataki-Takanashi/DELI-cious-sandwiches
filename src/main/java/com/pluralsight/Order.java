@@ -77,6 +77,7 @@ public class Order {
             // Add topping prices
             if (sandwich.getToppings() != null) {
                 for (Topping topping : sandwich.getToppings()) {
+                    topping.updatePriceBySize(sandwich.getBread().getBreadSize());
                     total += topping.getPrice();
                 }
             }
