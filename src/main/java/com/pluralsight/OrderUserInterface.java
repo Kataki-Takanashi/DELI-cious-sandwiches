@@ -13,7 +13,7 @@ public class OrderUserInterface {
                 switch (userSelection) {
                     case 1:
                         // Add Sandwich
-                        SandwichBuilder.sandwichScreen();
+                        new SandwichBuilder().sandwichScreen();
                         break;
                     case 2:
                         // Add Drink
@@ -30,14 +30,14 @@ public class OrderUserInterface {
                 }
             }
             catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.out.println("Please enter a valid number.");
             }
         } while (userSelection != 0);
     }
 
     private static int displayMainMenu() throws IllegalArgumentException {
         String menu = """
-
+        
                 Order Screen
                 Please select from the following choices:
                 \t1. Add Sandwich
