@@ -6,13 +6,12 @@ import com.pluralsight.utils.Console;
 
 public class SandwichBuilder {
     private Sandwich sandwich = new Sandwich();
+    Bread bread = new Bread();
 
     public void sandwichScreen() {
         int userSelection = 0;
 
         do {
-            sandwich = new Sandwich();
-            Bread bread = new Bread();
             try {
                 userSelection = displaySandwichMenu();
                 switch (userSelection) {
@@ -29,6 +28,7 @@ public class SandwichBuilder {
                         break;
                     case 4:
                         // Toggle toasted option
+                        sandwich.setIsToasted(!sandwich.isToasted());
                         break;
                     case 5:
                         // Complete sandwich
@@ -43,17 +43,30 @@ public class SandwichBuilder {
         } while (userSelection != 0 && userSelection != 5);
     }
 
-    private static int displaySandwichMenu() throws IllegalArgumentException {
+    private int displaySandwichMenu() throws IllegalArgumentException {
+        String breadType = (sandwich.getBread() != null && sandwich.getBread().getBreadType() != null) 
+                ? "[" + sandwich.getBread().getBreadType().toString() + "]" 
+                : "[not selected]";
+
+        String breadSize = (sandwich.getBread() != null && sandwich.getBread().getBreadSize() != null)
+                ? "[" + sandwich.getBread().getBreadSize().getInches() + " inch]"
+                : "[not selected]";
+
+        String toastedStatus = sandwich.isToasted() 
+                ? "[Toasted]" 
+                : "[Not Toasted]";
+
         String menu = """
+
                 Build Your Sandwich
                 Please select from the following choices:
-                \t1. Select Bread
-                \t2. Choose Size
+                \t1. Select Bread %s
+                \t2. Choose Size %s
                 \t3. Select Toppings
-                \t4. Toasting Options
+                \t4. Toggle Toasted %s
                 \t5. Complete Sandwich
                 \t0. Cancel
-                Enter choice:\s""";
+                Enter choice:\s""".formatted(breadType, breadSize, toastedStatus); // using formatted bc console.PromptForString() needs a string
         String selection = Console.PromptForString(menu);
         return switch (selection.trim()) {
             case "1" -> 1;
