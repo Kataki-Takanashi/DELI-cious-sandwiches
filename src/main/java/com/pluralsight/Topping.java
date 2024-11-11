@@ -7,14 +7,16 @@ public class Topping {
     private Cheese cheese;
     private Regular regular;
     private Sauce sauce;
+    private boolean isExtra;
     private double price;
 
-    public Topping(Meat meat) {
+    public Topping(Meat meat, boolean isExtra) {
         this.meat = meat;
+        this.isExtra = isExtra;
         updatePrice();
     }
 
-    public Topping(Cheese cheese) {
+    public Topping(Cheese cheese, boolean isExtra) {
         this.cheese = cheese;
         updatePrice();
     }
@@ -70,5 +72,23 @@ public class Topping {
 
     public boolean isSauce() {
         return sauce != null;
+    }
+
+    public boolean isExtra() {
+        return isExtra;
+    }
+
+    @Override
+    public String toString() {
+        if (meat != null) {
+            return isExtra ? "EXTRA " + meat.name() : meat.name();
+        } else if (cheese != null) {
+            return isExtra ? "EXTRA " + cheese.name() : cheese.name();
+        } else if (regular != null) {
+            return regular.name();
+        } else if (sauce != null) {
+            return sauce.name();
+        }
+        return "Unknown Topping"; // TODO: Consider throwing an exception instead
     }
 }
