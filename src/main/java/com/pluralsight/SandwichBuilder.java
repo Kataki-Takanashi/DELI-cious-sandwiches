@@ -23,7 +23,7 @@ public class SandwichBuilder {
                         // Complete sandwich
                         break;
                     case 0:
-                        System.out.println("Canceling sandwich creation...");
+                        System.out.println("Canceling Sandwich Creation...");
                         break;
                 }
             } catch (IllegalArgumentException e) {
@@ -34,6 +34,7 @@ public class SandwichBuilder {
 
     private static int displaySandwichMenu() throws IllegalArgumentException {
         String menu = """
+
                 Build Your Sandwich
                 Please select from the following choices:
                 \t1. Select Bread

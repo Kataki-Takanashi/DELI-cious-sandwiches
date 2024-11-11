@@ -30,13 +30,14 @@ public class OrderUserInterface {
                 }
             }
             catch (IllegalArgumentException e) {
-                System.out.println("Please enter a valid number.");
+                System.out.println(e.getMessage());
             }
         } while (userSelection != 0);
     }
 
     private static int displayMainMenu() throws IllegalArgumentException {
         String menu = """
+
                 Order Screen
                 Please select from the following choices:
                 \t1. Add Sandwich

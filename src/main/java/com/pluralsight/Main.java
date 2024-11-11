@@ -23,13 +23,14 @@ public class Main {
                 }
             }
             catch (IllegalArgumentException e) {
-                System.out.println("Please enter a valid number.");
+                System.out.println(e.getMessage());
             }
         } while (userSelection != 0);
     }
 
     private static int displayMainMenu() throws IllegalArgumentException {
         String menu = """
+
                 Welcome to the Shop!
                 Please select from the following choices:
                 \t1. New Order
