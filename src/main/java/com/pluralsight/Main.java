@@ -28,7 +28,7 @@ public class Main {
         } while (userSelection != 0);
     }
 
-    private static int displayMainMenu() throws IllegalArgumentException {
+    private static int displayMainMenu() throws IllegalArgumentException { // TODO: Add Order History, Menu
         String menu = """
 
                 Welcome to the Shop!

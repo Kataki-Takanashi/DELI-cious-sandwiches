@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import com.pluralsight.enums.*;
+import java.util.Objects;
 
 public class Topping {
     private Meat meat;
@@ -106,5 +107,22 @@ public class Topping {
             return sauce.name();
         }
         return "Unknown Topping"; // TODO: Consider throwing an exception instead
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Topping topping = (Topping) o;
+        return isExtra == topping.isExtra && 
+               Objects.equals(meat, topping.meat) && 
+               Objects.equals(cheese, topping.cheese) && 
+               Objects.equals(regular, topping.regular) && 
+               Objects.equals(sauce, topping.sauce);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(meat, cheese, regular, sauce, isExtra);
     }
 }

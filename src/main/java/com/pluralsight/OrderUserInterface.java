@@ -57,6 +57,13 @@ public class OrderUserInterface {
             Sandwich sandwich = order.getSandwiches().get(0);
             StringBuilder summary = new StringBuilder();
             
+            // Check if sandwich is incomplete
+            if (sandwich.getBread() == null || 
+                sandwich.getBread().getBreadType() == null || 
+                sandwich.getBread().getBreadSize() == null) {
+                return "[incomplete sandwich]";
+            }
+            
             // Add bread size and type
             summary.append("[")
                    .append(sandwich.getBread().getBreadSize().getInches())
@@ -70,8 +77,14 @@ public class OrderUserInterface {
                 // Convert toppings to a readable list
                 List<String> toppingNames = sandwich.getToppings().stream()
                     .<String>map(topping -> {
-                        if (topping.isMeat()) return topping.getMeat().name().toLowerCase().replace('_', ' ');
-                        if (topping.isCheese()) return topping.getCheese().name().toLowerCase().replace('_', ' ');
+                        if (topping.isMeat()) {
+                            String name = topping.getMeat().name().toLowerCase().replace('_', ' ');
+                            return topping.isExtra() ? "extra " + name : name;
+                        }
+                        if (topping.isCheese()) {
+                            String name = topping.getCheese().name().toLowerCase().replace('_', ' ');
+                            return topping.isExtra() ? "extra " + name : name;
+                        }
                         if (topping.isRegular()) return topping.getRegular().name().toLowerCase().replace('_', ' ');
                         if (topping.isSauce()) return topping.getSauce().name().toLowerCase().replace('_', ' ');
                         return "";
@@ -106,21 +119,35 @@ public class OrderUserInterface {
     }
 
     private static int displayMainMenu(Order order) throws IllegalArgumentException {
+        // Check if there's at least one sandwich with bread and size before allowing checkout
+        boolean canCheckout = false;
+        if (!order.getSandwiches().isEmpty()) {
+            for (Sandwich sandwich : order.getSandwiches()) {
+                if (sandwich.getBread() != null && 
+                    sandwich.getBread().getBreadType() != null && 
+                    sandwich.getBread().getBreadSize() != null) {
+                    canCheckout = true;
+                    break;
+                }
+            }
+        }
+
+        // Add validation message if sandwich is incomplete
         String sandwichSummary = formatSandwichSummary(order);
-        
+
         String drinkCount = order.getDrinks() > 0
                 ? String.format("[%d drink%s ($%.2f/drink)]", 
                     order.getDrinks(), 
                     order.getDrinks() > 1 ? "s" : "",
                     Order.DRINK_PRICE)
-                : "[none]";
+                : String.format("[none ($%.2f/drink)]", Order.DRINK_PRICE);
                 
         String chipCount = order.getChips() > 0
                 ? String.format("[%d bag%s ($%.2f/bag)]", 
                     order.getChips(), 
                     order.getChips() > 1 ? "s" : "",
                     Order.CHIPS_PRICE)
-                : "[none]";
+                : String.format("[none ($%.2f/bag)]", Order.CHIPS_PRICE);
 
         String totalPrice = String.format("[Total: $%.2f]", order.getTotalPrice());
 
@@ -141,6 +168,10 @@ public class OrderUserInterface {
         do {
             selection = Console.PromptForString(menu);
         } while (selection.isEmpty());
+
+        if (selection.trim().equals("4") && !canCheckout) {
+            throw new IllegalArgumentException("Cannot checkout without a complete sandwich! Please add bread and size first.");
+        }
 
         return switch (selection.trim().toUpperCase()) {
             case "1" -> 1;

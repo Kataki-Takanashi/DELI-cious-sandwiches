@@ -7,6 +7,7 @@ import com.pluralsight.enums.Meat;
 import com.pluralsight.enums.Regular;
 import com.pluralsight.enums.Sauce;
 import com.pluralsight.utils.Console;
+import java.util.stream.Collectors;
 
 public class SandwichBuilder {
     private Sandwich sandwich = new Sandwich();
@@ -28,16 +29,30 @@ public class SandwichBuilder {
                         selectBreadSize(bread);
                         break;
                     case 3:
-                        // Select toppings
-                        selectToppings();
+                        // Check for bread and size before allowing toppings
+                        if (sandwich.getBread() == null || 
+                            sandwich.getBread().getBreadType() == null || 
+                            sandwich.getBread().getBreadSize() == null) {
+                            System.out.println("Please select bread and size before adding toppings!");
+                        } else {
+                            selectToppings();
+                        }
                         break;
                     case 4:
                         // Toggle toasted option
                         sandwich.setIsToasted(!sandwich.isToasted());
                         break;
                     case 5:
-                        // Complete sandwich
-                        return sandwich;
+                        // Check for minimum requirements before allowing completion
+                        if (sandwich.getBread() == null || 
+                            sandwich.getBread().getBreadType() == null || 
+                            sandwich.getBread().getBreadSize() == null) {
+                            System.out.println("Please select bread and size before completing your sandwich!");
+                            userSelection = -1; // Force stay in menu
+                        } else {
+                            return sandwich;
+                        }
+                        break;
                     case 0:
                         System.out.println("Canceling Sandwich Creation...");
                         return null;
@@ -45,8 +60,8 @@ public class SandwichBuilder {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-        } while (userSelection != 0 && userSelection != 5);
-        return null; // Consider making exception
+        } while (userSelection != 0);
+        return null;
     }
 
     private int displaySandwichMenu() throws IllegalArgumentException {
@@ -133,15 +148,48 @@ public class SandwichBuilder {
     private void selectToppings() {
         int selection;
         do {
+            // Get current selections for each category
+            String meatSelections = sandwich.getToppings() != null && sandwich.getToppings().stream().anyMatch(Topping::isMeat)
+                ? sandwich.getToppings().stream()
+                    .filter(Topping::isMeat)
+                    .map(t -> t.toString().replaceAll("[\\[\\]]", ""))
+                    .collect(Collectors.joining(", "))
+                : "not selected";
+
+            String cheeseSelections = sandwich.getToppings() != null && sandwich.getToppings().stream().anyMatch(Topping::isCheese)
+                ? sandwich.getToppings().stream()
+                    .filter(Topping::isCheese)
+                    .map(t -> t.toString().replaceAll("[\\[\\]]", ""))
+                    .collect(Collectors.joining(", "))
+                : "not selected";
+
+            String regularSelections = sandwich.getToppings() != null && sandwich.getToppings().stream().anyMatch(Topping::isRegular)
+                ? sandwich.getToppings().stream()
+                    .filter(Topping::isRegular)
+                    .map(t -> t.toString().replaceAll("[\\[\\]]", ""))
+                    .collect(Collectors.joining(", "))
+                : "not selected";
+
+            String sauceSelections = sandwich.getToppings() != null && sandwich.getToppings().stream().anyMatch(Topping::isSauce)
+                ? sandwich.getToppings().stream()
+                    .filter(Topping::isSauce)
+                    .map(t -> t.toString().replaceAll("[\\[\\]]", ""))
+                    .collect(Collectors.joining(", "))
+                : "not selected";
+
             String menu = """
                     
                     Select Topping Category
-                    \t1. Meats
-                    \t2. Cheese
-                    \t3. Regular Toppings
-                    \t4. Sauces
+                    \t1. Meats [%s]
+                    \t2. Cheese [%s]
+                    \t3. Regular Toppings [%s]
+                    \t4. Sauces [%s]
                     \t0. Done
-                    Enter choice:\s""";
+                    Enter choice:\s""".formatted(
+                        meatSelections,
+                        cheeseSelections,
+                        regularSelections,
+                        sauceSelections);
                     
             selection = Integer.parseInt(Console.PromptForString(menu).trim());
             
@@ -163,10 +211,19 @@ public class SandwichBuilder {
             case EIGHT_INCH -> 1.0;
             case TWELVE_INCH -> 1.5;
         };
+
+        // Get current meat selections
+        String currentMeats = sandwich.getToppings() != null 
+            ? sandwich.getToppings().stream()
+                .filter(Topping::isMeat)
+                .map(Object::toString)
+                .collect(Collectors.joining(", "))
+            : "[none]";
+
         while (selecting) {
-            String menu = """
+            String menu = String.format("""
                     
-                    Select Meats (Multiple Selections Allowed)
+                    Select Meats (Multiple Selections Allowed) %s
                     Regular:
                     \t1. Steak      ($%.2f)
                     \t2. Ham        ($%.2f)
@@ -182,20 +239,21 @@ public class SandwichBuilder {
                     \t11. Extra Chicken    (+$%.2f)
                     \t12. Extra Bacon      (+$%.2f)
                     \t0. Done
-                    Enter choice:\s""".formatted(
-                        Meat.STEAK.getPrice(),
-                        Meat.HAM.getPrice(),
-                        Meat.SALAMI.getPrice(),
-                        Meat.ROAST_BEEF.getPrice(),
-                        Meat.CHICKEN.getPrice(),
-                        Meat.BACON.getPrice(),
-                        extraPrice,
-                        extraPrice,
-                        extraPrice,
-                        extraPrice,
-                        extraPrice,
-                        extraPrice
-                    );
+                    Enter choice:\s""",
+                    currentMeats.equals("[none]") ? "" : "[Selected: " + currentMeats + "]",
+                    Meat.STEAK.getPrice(),
+                    Meat.HAM.getPrice(),
+                    Meat.SALAMI.getPrice(),
+                    Meat.ROAST_BEEF.getPrice(),
+                    Meat.CHICKEN.getPrice(),
+                    Meat.BACON.getPrice(),
+                    extraPrice,
+                    extraPrice,
+                    extraPrice,
+                    extraPrice,
+                    extraPrice,
+                    extraPrice
+                );
             
             String selection = Console.PromptForString(menu).trim();
             
@@ -337,6 +395,17 @@ public class SandwichBuilder {
                 default -> System.out.println("Invalid selection: " + selection);
             }
         }
+    }
+
+    public Sandwich completeSandwich() {
+        // Check if required fields are set
+        if (sandwich.getBread() == null || 
+            sandwich.getBread().getBreadType() == null || 
+            sandwich.getBread().getBreadSize() == null) {
+            System.out.println("Cannot complete sandwich without bread and size selected!");
+            return null;
+        }
+        return sandwich;
     }
 
 }
