@@ -1,5 +1,6 @@
 package com.pluralsight;
 
+import com.pluralsight.enums.DrinkSize;
 import com.pluralsight.utils.Console;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,22 +24,24 @@ public class OrderUserInterface {
                         break;
                     case 2:
                         // Add Drink
-                        order.addDrinks(1);
+                        addDrink(order);
                         break;
                     case 3:
                         // Add Chips
                         order.addChips(1);
                         break;
                     case 4:
-                        // Checkout
-                        order.checkout();
+                        // Specials
+                        specialsScreen.display(order);
                         break;
                     case 5:
+                        // Checkout
+                        order.checkout();
+                        order = new Order(); // Resets the order
+                        break;
+                    case 6:
                         System.out.println("Canceling Order...");
                         return;
-                    case 0:
-                        System.out.println("Exiting...");
-                        System.exit(0);
                     default:
                         System.out.println("Please enter a valid number.");
                 }
@@ -46,7 +49,7 @@ public class OrderUserInterface {
             catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-        } while (userSelection != 0);
+        } while (userSelection != 6);
     }
 
     private static String formatSandwichSummary(Order order) {
@@ -136,12 +139,14 @@ public class OrderUserInterface {
         // Add validation message if sandwich is incomplete
         String sandwichSummary = formatSandwichSummary(order);
 
-        String drinkCount = order.getDrinks() > 0
-                ? String.format("[%d drink%s ($%.2f/drink)]", 
-                    order.getDrinks(), 
-                    order.getDrinks() > 1 ? "s" : "",
-                    Order.DRINK_PRICE)
-                : String.format("[none ($%.2f/drink)]", Order.DRINK_PRICE);
+        String drinkCount = order.getDrinks().values().stream().mapToInt(Integer::intValue).sum() > 0
+                ? String.format("[%d drink%s ($%.2f total)]", 
+                    order.getDrinks().values().stream().mapToInt(Integer::intValue).sum(),
+                    order.getDrinks().values().stream().mapToInt(Integer::intValue).sum() > 1 ? "s" : "",
+                    order.getDrinks().entrySet().stream()
+                        .mapToDouble(entry -> entry.getKey().getPrice() * entry.getValue())
+                        .sum())
+                : "[none]";
                 
         String chipCount = order.getChips() > 0
                 ? String.format("[%d bag%s ($%.2f/bag)]", 
@@ -159,9 +164,9 @@ public class OrderUserInterface {
                 \t1. Add Sandwich %s
                 \t2. Add Drink %s
                 \t3. Add Chips %s
-                \t4. Checkout %s
-                \t5. Cancel Order
-                \t0. Exit
+                \t4. Add Specialty Sandwich
+                \t5. Checkout %s
+                \t6. Cancel Order
                 Enter choice:\s""".formatted(sandwichSummary, drinkCount, chipCount, totalPrice);
         
         String selection;
@@ -170,7 +175,7 @@ public class OrderUserInterface {
             selection = Console.PromptForString(menu);
         } while (selection.isEmpty());
 
-        if (selection.trim().equals("4") && order.getTotalPrice() == 0) {
+        if (selection.trim().equals("5") && order.getTotalPrice() == 0) {
             throw new IllegalArgumentException("Cannot checkout without any items! Please add at least one item to your order.");
         }
 
@@ -179,9 +184,46 @@ public class OrderUserInterface {
             case "2" -> 2;
             case "3" -> 3;
             case "4" -> 4;
-            case "5", "EXIT", "E", "Q", "QUIT" -> 5;
-            case "0" -> 0;
+            case "5" -> 5;
+            case "6", "EXIT", "E", "Q", "QUIT" -> 6;
             default -> throw new IllegalArgumentException("Invalid selection: " + selection);
         };
+    }
+
+    private static void addDrink(Order order) {
+        String menu = """
+                
+                Select Drink Size
+                \t1. Small  ($%.2f)
+                \t2. Medium ($%.2f)
+                \t3. Large  ($%.2f)
+                \t0. Cancel
+                Enter choice:\s""".formatted(
+                DrinkSize.SMALL.getPrice(),
+                DrinkSize.MEDIUM.getPrice(),
+                DrinkSize.LARGE.getPrice());
+
+        while (true) {
+            String selection = Console.PromptForString(menu);
+            switch (selection.trim().toUpperCase()) {
+                case "1", "S", "SMALL":
+                    order.addDrink(DrinkSize.SMALL);
+                    System.out.println("Small drink added!");
+                    return;
+                case "2", "M", "MEDIUM":
+                    order.addDrink(DrinkSize.MEDIUM);
+                    System.out.println("Medium drink added!");
+                    return;
+                case "3", "L", "LARGE":
+                    order.addDrink(DrinkSize.LARGE);
+                    System.out.println("Large drink added!");
+                    return;
+                case "0", "CANCEL":
+                    System.out.println("Drink selection cancelled.");
+                    return;
+                default:
+                    System.out.println("Invalid selection. Please try again.");
+            }
+        }
     }
 }

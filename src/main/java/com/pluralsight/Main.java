@@ -14,9 +14,9 @@ public class Main {
                         // New Order
                         OrderUserInterface.orderScreen();
                         break;
-                    case 2:
+                    case 999:
                         // GUI
-                        break; // TODO: Implement GUI, Quick Order, Specials. (Quick Order shows the last 5 unique orders)
+                        break; // TODO: Implement GUI, Quick Order. (Quick Order shows the last 5 unique orders)
                     case 0: // Possibly allow for users to make their own named orders or "presets"
                         System.out.println("Exiting Shop...");
                         break;
@@ -45,6 +45,7 @@ public class Main {
         return switch (selection.trim().toUpperCase()) {
             case "1" -> 1;
             case "2" -> 2;
+            case "g" -> 999;
             case "0", "EXIT", "E", "Q", "QUIT" -> 0;
             default -> throw new IllegalArgumentException("Invalid selection: " + selection);
         };

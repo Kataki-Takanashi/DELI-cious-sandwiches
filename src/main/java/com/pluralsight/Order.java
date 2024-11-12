@@ -1,27 +1,28 @@
 package com.pluralsight;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.pluralsight.enums.DrinkSize;
 import com.pluralsight.utils.Console;
 
 public class Order {
     private List<Sandwich> sandwiches;
-    private int drinks;
+    private Map<DrinkSize, Integer> drinks;
     private int chips;
     private double totalPrice;
     private static int orderCounter = 0;
-    private final int orderNumber;
+    private int orderNumber;
 
-    public static final double DRINK_PRICE = 2.50;
     public static final double CHIPS_PRICE = 1.50;
 
     public Order() {
         this.sandwiches = new ArrayList<>();
-        this.drinks = 0;
+        this.drinks = new HashMap<>();
         this.chips = 0;
         this.totalPrice = 0.0;
-        this.orderNumber = ++orderCounter; // Adds one to the order counter that is statically set its not an instance variable
     }
 
     public void addSandwich(Sandwich sandwich) {
@@ -40,12 +41,12 @@ public class Order {
         return new ArrayList<>(sandwiches);
     }
 
-    public int getDrinks() {
-        return drinks;
+    public Map<DrinkSize, Integer> getDrinks() {
+        return new HashMap<>(drinks);
     }
 
-    public void addDrinks(int drinks) {
-        this.drinks++;
+    public void addDrink(DrinkSize size) {
+        drinks.merge(size, 1, Integer::sum);
         updateTotalPrice();
     }
 
@@ -86,7 +87,11 @@ public class Order {
         }
         
         // Add drink price (if selected)
-        total += DRINK_PRICE * drinks;
+        for (Map.Entry<DrinkSize, Integer> entry : drinks.entrySet()) {
+            DrinkSize size = entry.getKey();
+            int quantity = entry.getValue();
+            total += size.getPrice() * quantity;
+        }
         
         // Add chips price (if selected)
         total += CHIPS_PRICE * chips;
@@ -128,10 +133,15 @@ public class Order {
             }
         }
         
-        // Add Drinks and Chips
-        if (drinks > 0) {
-            summary.append(String.format("\nDrinks: %d ($%.2f each)\n", drinks, DRINK_PRICE));
+        // Add Drinks
+        if (!drinks.isEmpty()) {
+            summary.append("\nDrinks:\n");
+            drinks.forEach((size, quantity) -> 
+                summary.append(String.format("%dx %s ($%.2f each)\n", 
+                    quantity, size.toString(), size.getPrice())));
         }
+        
+        // Add Chips
         if (chips > 0) {
             summary.append(String.format("Chips: %d ($%.2f each)\n", chips, CHIPS_PRICE));
         }
@@ -143,6 +153,9 @@ public class Order {
     }
 
     public boolean checkout() {
+        // Assign order number at checkout time
+        this.orderNumber = ++orderCounter;
+        
         // Display order summary
         System.out.println(generateOrderSummary());
         
