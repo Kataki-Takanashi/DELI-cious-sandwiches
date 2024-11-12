@@ -19,6 +19,7 @@ public class Topping {
 
     public Topping(Cheese cheese, boolean isExtra) {
         this.cheese = cheese;
+        this.isExtra = isExtra;
         updatePrice();
     }
 

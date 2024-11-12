@@ -4,9 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Sandwich {
-    Bread bread;
-    Set<Topping> toppings; // This is a set to avoid duplicate toppings
-    boolean isToasted;
+    private Bread bread;
+    private Set<Topping> toppings; // This is a set to avoid duplicate toppings
+    private boolean isToasted;
 
     /**
      * Default values:

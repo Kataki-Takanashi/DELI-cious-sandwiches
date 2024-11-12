@@ -31,6 +31,7 @@ public class OrderUserInterface {
                         break;
                     case 4:
                         // Checkout
+                        order.checkout();
                         break;
                     case 5:
                         System.out.println("Canceling Order...");
@@ -43,7 +44,7 @@ public class OrderUserInterface {
                 }
             }
             catch (IllegalArgumentException e) {
-                System.out.println("Please enter a valid number.");
+                System.out.println(e.getMessage());
             }
         } while (userSelection != 0);
     }
@@ -169,8 +170,8 @@ public class OrderUserInterface {
             selection = Console.PromptForString(menu);
         } while (selection.isEmpty());
 
-        if (selection.trim().equals("4") && !canCheckout) {
-            throw new IllegalArgumentException("Cannot checkout without a complete sandwich! Please add bread and size first.");
+        if (selection.trim().equals("4") && order.getTotalPrice() == 0) {
+            throw new IllegalArgumentException("Cannot checkout without any items! Please add at least one item to your order.");
         }
 
         return switch (selection.trim().toUpperCase()) {
