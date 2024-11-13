@@ -123,8 +123,8 @@ public class OrderUserInterface {
     }
 
     private static int displayMainMenu(Order order) throws IllegalArgumentException {
-        // Check if there's at least one sandwich with bread and size before allowing checkout
-        boolean canCheckout = false;
+        // Check if there's at least one sandwich with bread and size set before allowing checkout
+        boolean canCheckout = false; // TODO: Remove, make sure its not needed
         if (!order.getSandwiches().isEmpty()) {
             for (Sandwich sandwich : order.getSandwiches()) {
                 if (sandwich.getBread() != null && 
@@ -136,7 +136,7 @@ public class OrderUserInterface {
             }
         }
 
-        // Add validation message if sandwich is incomplete
+        // These are the summaries that are displayed in the main menu, they help the user see what they have in thir order and the price
         String sandwichSummary = formatSandwichSummary(order);
 
         String drinkCount = order.getDrinks().values().stream().mapToInt(Integer::intValue).sum() > 0

@@ -1,5 +1,8 @@
 package com.pluralsight;
 import com.pluralsight.utils.Console;
+import com.pluralsight.utils.gui.AppMain;
+
+import javafx.application.Application;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,6 +19,7 @@ public class Main {
                         break;
                     case 999:
                         // GUI
+                        Application.launch(AppMain.class, args);
                         break; // TODO: Implement GUI, Quick Order. (Quick Order shows the last 5 unique orders)
                     case 0: // Possibly allow for users to make their own named orders or "presets"
                         System.out.println("Exiting Shop...");
@@ -45,7 +49,7 @@ public class Main {
         return switch (selection.trim().toUpperCase()) {
             case "1" -> 1;
             case "2" -> 2;
-            case "g" -> 999;
+            case "G" -> 999;
             case "0", "EXIT", "E", "Q", "QUIT" -> 0;
             default -> throw new IllegalArgumentException("Invalid selection: " + selection);
         };
