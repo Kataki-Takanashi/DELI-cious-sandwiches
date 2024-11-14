@@ -6,7 +6,7 @@ import javafx.application.Application;
 
 public class Main {
     public static void main(String[] args) {
-        int userSelection = 0;
+        int userSelection = 1000; // because it cant start at 0
 
         // Main Menu Loop
         do {

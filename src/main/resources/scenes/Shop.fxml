@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane fx:id="backgroundPane" prefHeight="950.0" prefWidth="1300.0" stylesheets="@../styles/Shop.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pluralsight.utils.gui.Shop">
+   <children>
+      <ImageView fx:id="MENU" fitHeight="150.0" fitWidth="200.0" layoutX="730.0" layoutY="300.0" scaleX="5.0" scaleY="5.0">
+         <image>
+            <Image url="@../images/ShopScreen/MENU.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="ORDER" fitHeight="150.0" fitWidth="200.0" layoutX="103.0" layoutY="290.0" scaleX="5.0" scaleY="5.0">
+         <image>
+            <Image url="@../images/ShopScreen/ORDER.png" />
+         </image>
+      </ImageView>
+      <StackPane layoutX="438.0" layoutY="38.0">
+         <children>
+            <ImageView fx:id="Breads" fitHeight="150.0" fitWidth="200.0" scaleX="3.0" scaleY="3.0">
+               <image>
+                  <Image url="@../images/ShopScreen/Breads.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="BreadsGlowLeftImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.0" scaleY="3.0">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Breads/BreadsGlowLeft.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="BreadsGlowMiddleImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.0" scaleY="3.0">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Breads/BreadsGlowMiddle.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="BreadsGlowRightImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.0" scaleY="3.0">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Breads/BreadsGlowRight.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="BreadsGlowToastImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.0" scaleY="3.0">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Breads/BreadsGlowToast.png" />
+               </image>
+            </ImageView>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="BreadsGlowLeft" layoutX="-18.0" layoutY="93.0" mnemonicParsing="false" opacity="0.0" prefHeight="40.0" prefWidth="49.0" />
+                  <Button fx:id="BreadsGlowMiddle" layoutX="51.0" layoutY="86.0" mnemonicParsing="false" opacity="0.0" prefHeight="40.0" prefWidth="41.0" />
+                  <Button fx:id="BreadsGlowRight" layoutX="112.0" layoutY="84.0" mnemonicParsing="false" opacity="0.0" prefHeight="46.0" prefWidth="68.0" />
+                  <Button fx:id="BreadsGlowToast" layoutX="51.0" layoutY="143.0" mnemonicParsing="false" opacity="0.0" prefHeight="59.0" prefWidth="68.0" />
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
+      <StackPane layoutX="35.0" layoutY="610.0">
+         <children>
+            <ImageView fx:id="Chips" fitHeight="150.0" fitWidth="200.0" scaleX="3.0" scaleY="3.0">
+               <image>
+                  <Image url="@../images/ShopScreen/Chips.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ChipsRed1Image" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.0" scaleY="3.0">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Chips/ChipsRed1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ChipsRed2Image" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.0" scaleY="3.0">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Chips/ChipsRed2.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ChipsRed3Image" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.0" scaleY="3.0">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Chips/ChipsRed3.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ChipsBlue1Image" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.0" scaleY="3.0">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Chips/ChipsBlue4.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ChipsBlue2Image" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.0" scaleY="3.0">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Chips/ChipsBlue5.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ChipsBlue3Image" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.0" scaleY="3.0">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Chips/ChipsBlue6.png" />
+               </image>
+            </ImageView>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="ChipsRed1" layoutX="7.0" layoutY="19.0" minHeight="-Infinity" mnemonicParsing="false" opacity="0.0" prefHeight="116.0" prefWidth="84.0" />
+                  <Button fx:id="ChipsRed2" layoutX="108.0" layoutY="20.0" minHeight="-Infinity" mnemonicParsing="false" opacity="0.0" prefHeight="116.0" prefWidth="78.0" />
+                  <Button fx:id="ChipsRed3" layoutX="215.0" layoutY="21.0" minHeight="-Infinity" mnemonicParsing="false" opacity="0.0" prefHeight="116.0" prefWidth="78.0" />
+                  <Button fx:id="ChipsBlue1" layoutX="26.0" layoutY="179.0" minHeight="-Infinity" mnemonicParsing="false" opacity="0.0" prefHeight="107.0" prefWidth="78.0" />
+                  <Button fx:id="ChipsBlue2" layoutX="116.0" layoutY="173.0" mnemonicParsing="false" opacity="0.0" prefHeight="107.0" prefWidth="84.0" />
+                  <Button fx:id="ChipsBlue3" layoutX="209.0" layoutY="174.0" mnemonicParsing="false" opacity="0.0" prefHeight="116.0" prefWidth="91.0" />
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
+      <StackPane layoutX="381.0" layoutY="675.0">
+         <children>
+            <ImageView fx:id="Sauces" fitHeight="150.0" fitWidth="200.0" scaleX="2.0" scaleY="2.0">
+               <image>
+                  <Image url="@../images/ShopScreen/Sauces.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="SaucesMustardImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="2.0" scaleY="2.0">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Sauces/SaucesMustard.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="SaucesMayoImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="2.0" scaleY="2.0">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Sauces/SaucesMayo.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="SaucesKetchupImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="2.0" scaleY="2.0">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Sauces/SaucesKetchup.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="SaucesRanchImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="2.0" scaleY="2.0">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Sauces/SaucesRanch.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="SaucesThousandIslandImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="2.0" scaleY="2.0">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Sauces/SaucesThousandIsland.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="SaucesVinaigretteImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="2.0" scaleY="2.0">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Sauces/SaucesVinaigrette.png" />
+               </image>
+            </ImageView>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="SaucesMustard" layoutX="50.0" layoutY="20.0" mnemonicParsing="false" opacity="0.0" prefHeight="107.0" prefWidth="34.0" />
+                  <Button fx:id="SaucesMayo" layoutX="124.0" layoutY="20.0" mnemonicParsing="false" opacity="0.0" prefHeight="107.0" prefWidth="34.0" />
+                  <Button fx:id="SaucesKetchup" layoutX="196.0" layoutY="19.0" mnemonicParsing="false" opacity="0.0" prefHeight="107.0" prefWidth="34.0" />
+                  <Button fx:id="SaucesRanch" layoutX="51.0" layoutY="139.0" mnemonicParsing="false" opacity="0.0" prefHeight="93.0" prefWidth="27.0" />
+                  <Button fx:id="SaucesThousandIsland" layoutX="127.0" layoutY="139.0" mnemonicParsing="false" opacity="0.0" prefHeight="93.0" prefWidth="27.0" />
+                  <Button fx:id="SaucesVinaigrette" layoutX="199.0" layoutY="139.0" mnemonicParsing="false" opacity="0.0" prefHeight="93.0" prefWidth="27.0" />
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
+      <StackPane layoutX="1028.0" layoutY="188.0">
+         <children>
+            <ImageView fx:id="Soda" fitHeight="150.0" fitWidth="200.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Soda.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="SodaSmallImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Soda/SodaSmall.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="SodaMediumImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Soda/SodaMedium.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="SodaLargeImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Soda/SodaLarge.png" />
+               </image>
+            </ImageView>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="SodaSmall" layoutX="-39.0" layoutY="6.0" mnemonicParsing="false" opacity="0.0" prefHeight="46.0" prefWidth="41.0" />
+                  <Button fx:id="SodaMedium" layoutX="7.0" layoutY="7.0" mnemonicParsing="false" opacity="0.0" prefHeight="52.0" prefWidth="34.0" />
+                  <Button fx:id="SodaLarge" layoutX="47.0" layoutY="8.0" mnemonicParsing="false" opacity="0.0" prefHeight="52.0" prefWidth="41.0" />
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
+      <StackPane layoutX="381.0" layoutY="381.0">
+         <children>
+            <ImageView fx:id="Specials" fitHeight="150.0" fitWidth="200.0" scaleX="2.0" scaleY="2.0">
+               <image>
+                  <Image url="@../images/ShopScreen/Specials.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="SpecialsBLTImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="2.0" scaleY="2.0">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Specials/SpecialsBLT.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="SpecialsPhillyImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="2.0" scaleY="2.0">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Specials/SpecialsPhilly.png" />
+               </image>
+            </ImageView>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="SpecialsBLT" layoutX="80.0" layoutY="51.0" mnemonicParsing="false" opacity="0.0" prefHeight="80.0" prefWidth="120.0" />
+                  <Button fx:id="SpecialsPhilly" layoutX="73.0" layoutY="135.0" mnemonicParsing="false" opacity="0.0" prefHeight="99.0" prefWidth="137.0" />
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
+      <StackPane layoutX="872.0" layoutY="665.0">
+         <children>
+            <ImageView fx:id="Toppings" fitHeight="150.0" fitWidth="200.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Toppings.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="SteakImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Toppings/Steak.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="HamImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Toppings/Ham.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="SalamiImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Toppings/Salami.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="RoastBeefImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Toppings/RoastBeef.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ChickenImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Toppings/Chicken.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="BaconImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Toppings/Bacon.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="AmericanImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Toppings/American.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ProvoloneImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Toppings/Provolone.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ChedderImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Toppings/Chedder.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="SwissImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Toppings/Swiss.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="LettuceImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Toppings/Lettuce.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="BellpepperImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Toppings/Bellpepper.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="OnionImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Toppings/Onion.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="TomatoImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Toppings/Tomato.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="JalapenoImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Toppings/Jalapeno.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="CucumberImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Toppings/Cucumber.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="PickleImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Toppings/Pickle.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="AvacadoImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Toppings/Avacado.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="MushroomImage" fitHeight="150.0" fitWidth="200.0" opacity="0.0" scaleX="3.5" scaleY="3.5">
+               <image>
+                  <Image url="@../images/ShopScreen/Glow/Toppings/Mushroom.png" />
+               </image>
+            </ImageView>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="Steak" layoutX="-201.0" layoutY="-81.0" mnemonicParsing="false" opacity="0.0" prefHeight="80.0" prefWidth="78.0" />
+                  <Button fx:id="Ham" layoutX="-113.0" layoutY="-81.0" mnemonicParsing="false" opacity="0.0" prefHeight="74.0" prefWidth="78.0" />
+                  <Button fx:id="Salami" layoutX="-200.0" layoutY="10.0" mnemonicParsing="false" opacity="0.0" prefHeight="124.0" prefWidth="78.0" />
+                  <Button fx:id="RoastBeef" layoutX="-112.0" layoutY="10.0" mnemonicParsing="false" opacity="0.0" prefHeight="124.0" prefWidth="78.0" />
+                  <Button fx:id="Chicken" layoutX="-200.0" layoutY="148.0" mnemonicParsing="false" opacity="0.0" prefHeight="93.0" prefWidth="78.0" />
+                  <Button fx:id="Bacon" layoutX="-113.0" layoutY="147.0" mnemonicParsing="false" opacity="0.0" prefHeight="93.0" prefWidth="78.0" />
+                  <Button fx:id="American" layoutX="-21.0" layoutY="-81.0" mnemonicParsing="false" opacity="0.0" prefHeight="143.0" prefWidth="55.0" />
+                  <Button fx:id="Provolone" layoutX="52.0" layoutY="-81.0" mnemonicParsing="false" opacity="0.0" prefHeight="143.0" prefWidth="68.0" />
+                  <Button fx:id="Chedder" layoutX="-20.0" layoutY="78.0" mnemonicParsing="false" opacity="0.0" prefHeight="162.0" prefWidth="61.0" />
+                  <Button fx:id="Swiss" layoutX="52.0" layoutY="77.0" mnemonicParsing="false" opacity="0.0" prefHeight="162.0" prefWidth="68.0" />
+                  <Button fx:id="Lettuce" layoutX="130.0" layoutY="-81.0" mnemonicParsing="false" opacity="0.0" prefHeight="80.0" prefWidth="78.0" />
+                  <Button fx:id="Bellpepper" layoutX="219.0" layoutY="-81.0" mnemonicParsing="false" opacity="0.0" prefHeight="80.0" prefWidth="84.0" />
+                  <Button fx:id="Onion" layoutX="314.0" layoutY="-82.0" mnemonicParsing="false" opacity="0.0" prefHeight="80.0" prefWidth="78.0" />
+                  <Button fx:id="Tomato" layoutX="130.0" layoutY="10.0" mnemonicParsing="false" opacity="0.0" prefHeight="124.0" prefWidth="78.0" />
+                  <Button fx:id="Jalapeno" layoutX="219.0" layoutY="10.0" mnemonicParsing="false" opacity="0.0" prefHeight="124.0" prefWidth="84.0" />
+                  <Button fx:id="Cucumber" layoutX="316.0" mnemonicParsing="false" opacity="0.0" prefHeight="134.0" prefWidth="84.0" />
+                  <Button fx:id="Pickle" layoutX="133.0" layoutY="147.0" mnemonicParsing="false" opacity="0.0" prefHeight="93.0" prefWidth="84.0" />
+                  <Button fx:id="Avacado" layoutX="218.0" layoutY="146.0" mnemonicParsing="false" opacity="0.0" prefHeight="93.0" prefWidth="84.0" />
+                  <Button fx:id="Mushroom" layoutX="316.0" layoutY="147.0" mnemonicParsing="false" opacity="0.0" prefHeight="93.0" prefWidth="78.0" />
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
+      <Line endX="127.5" layoutX="168.0" layoutY="72.0" startX="-124.0" strokeWidth="3.0" />
+   </children>
+</AnchorPane>

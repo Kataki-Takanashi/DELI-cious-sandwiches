@@ -33,7 +33,7 @@ public class Home {
     private ImageView HomeScreenDoorGlow;
 
     @FXML
-    private Pane doorButton;
+    private Button doorButton;
 
     @FXML
     private ImageView HomeScreen;
@@ -108,5 +108,24 @@ public class Home {
         fade.setToValue(toValue);
         fade.setCycleCount(1);
         return fade;
+    }
+
+    @FXML
+    public void goToShop(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/Shop.fxml"));
+        Parent shopView = loader.load();
+        
+        Scene shopScene = new Scene(shopView);
+        shopScene.setFill(Color.TRANSPARENT);
+        
+        // Get the CSS file
+        String css = this.getClass().getResource("/styles/Shop.css").toExternalForm();
+        shopScene.getStylesheets().add(css);
+        
+        // Get the stage from the event
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        // Set the new scene
+        stage.setScene(shopScene);
     }
 }

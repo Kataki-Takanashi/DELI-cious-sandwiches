@@ -1,0 +1,5 @@
+#backgroundPane {
+    -fx-border-radius: 15px;
+    -fx-background-radius: 30px;
+    -fx-background-color: #FFF8E7;
+}

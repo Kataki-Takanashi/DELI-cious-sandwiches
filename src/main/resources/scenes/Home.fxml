@@ -6,34 +6,34 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../styles/Home.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pluralsight.utils.gui.Home">
+<AnchorPane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../styles/Home.css" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pluralsight.utils.gui.Home">
    <children>
       <ImageView fx:id="HomeScreen" fitHeight="912.0" fitWidth="1477.0" layoutX="-8.0" layoutY="-56.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/HomeScreenExitFlat.png" />
+            <Image url="@../images/HomeScreen/HomeScreenExitFlat.png" />
          </image>
       </ImageView>
       <ImageView fx:id="HomeScreenExitOut" fitHeight="912.0" fitWidth="1477.0" layoutX="-8.0" layoutY="-56.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/HomeScreenExitOut.png" />
+            <Image url="@../images/HomeScreen/HomeScreenExitOut.png" />
          </image>
       </ImageView>
       <ImageView fx:id="HomeScreenExitIn" fitHeight="912.0" fitWidth="1477.0" layoutX="-8.0" layoutY="-56.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/HomeScreenHomeIn.png" />
+            <Image url="@../images/HomeScreen/HomeScreenHomeIn.png" />
          </image>
       </ImageView>
       <ImageView fx:id="HomeScreenDoorGlow" fitHeight="912.0" fitWidth="1268.0" layoutX="-8.0" layoutY="-56.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/HomeScreenDoorGlow.png" />
+            <Image url="@../images/HomeScreen/HomeScreenDoorGlow.png" />
          </image>
       </ImageView>
       <ImageView fx:id="HomeScreen1" fitHeight="912.0" fitWidth="1477.0" layoutX="-10.0" layoutY="-53.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Title.png" />
+            <Image url="@../images/HomeScreen/Title.png" />
          </image>
       </ImageView>
-      <Pane fx:id="doorButton" layoutX="601.0" layoutY="290.0" prefHeight="426.0" prefWidth="185.0" />
+      <Button fx:id="doorButton" layoutX="601.0" layoutY="290.0" prefHeight="426.0" prefWidth="185.0" onAction="#goToShop" opacity="0.0" />
       <Button fx:id="exitButton1" layoutX="295.0" layoutY="87.0" mnemonicParsing="false" onAction="#exitApp" opacity="0.0" prefHeight="20.0" prefWidth="66.0" />
       <Button fx:id="exitButton2" layoutX="295.0" layoutY="113.0" mnemonicParsing="false" onAction="#exitApp" opacity="0.0" prefHeight="9.0" prefWidth="66.0" />
       <Button fx:id="exitButton3" layoutX="295.0" layoutY="139.0" mnemonicParsing="false" onAction="#exitApp" opacity="0.0" prefHeight="7.0" prefWidth="26.0" />

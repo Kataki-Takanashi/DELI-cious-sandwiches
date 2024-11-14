@@ -2,10 +2,6 @@
     -fx-background-color: transparent;
 }
 
-#doorButton:hover + #HomeScreenDoorGlow {
-    -fx-opacity: 1;
-}
-
 #HomeScreen {
     -fx-opacity: 1;
 }

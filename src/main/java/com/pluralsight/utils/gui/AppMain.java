@@ -27,7 +27,7 @@ public class AppMain extends Application {
         String css = this.getClass().getResource("/styles/Home.css").toExternalForm();
         scene.getStylesheets().add(css);
 
-        Image icon = new Image("images/icon.png");
+        Image icon = new Image("images/HomeScreen/icon.png");
         stage.getIcons().add(icon);
         stage.setTitle("Ali's Sandwich Shop");
 

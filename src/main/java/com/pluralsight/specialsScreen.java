@@ -5,7 +5,7 @@ import com.pluralsight.utils.Console;
 public class specialsScreen {
     
     public static void display(Order order) {
-        int userSelection = 0;
+        int userSelection = 1000; // Also cant be 0
 
         do {
             try {
