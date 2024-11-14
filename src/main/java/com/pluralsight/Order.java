@@ -180,6 +180,61 @@ public class Order {
         }
     }
 
+    public boolean checkoutGUI() {
+        OrderFileManager.saveOrder(this);
+        return true;
+    }
+
+    public String generateGUIOrderSummary() {
+        StringBuilder summary = new StringBuilder();
+        // Add Sandwiches
+        summary.append("Sandwiches:\n");
+        if (sandwiches.isEmpty()) {
+            summary.append("No sandwiches ordered\n");
+        } else {
+            for (int i = 0; i < sandwiches.size(); i++) {
+                Sandwich sandwich = sandwiches.get(i);
+                summary.append(String.format("%d. %s bread (%d\") %s\n", 
+                    i + 1,
+                    sandwich.getBread().getBreadType().toString(),
+                    sandwich.getBread().getBreadSize().getInches(),
+                    sandwich.isToasted() ? "(Toasted)" : ""
+                ));
+                
+                // Add toppings
+                if (sandwich.getToppings() != null && !sandwich.getToppings().isEmpty()) {
+                    summary.append("   Toppings: ");
+                    sandwich.getToppings().forEach(topping -> {
+                        if (topping.isMeat()) summary.append(topping.getMeat()).append(", ");
+                        if (topping.isCheese()) summary.append(topping.getCheese()).append(", ");
+                        if (topping.isRegular()) summary.append(topping.getRegular()).append(", ");
+                        if (topping.isSauce()) summary.append(topping.getSauce()).append(", ");
+                    });
+                    summary.setLength(summary.length() - 2); // Gets rid of the comma at the end
+                    summary.append("\n");
+                }
+            }
+        }
+        
+        // Add Drinks
+        if (!drinks.isEmpty()) {
+            summary.append("\nDrinks:\n");
+            drinks.forEach((size, quantity) -> 
+                summary.append(String.format("%dx %s ($%.2f each)\n", 
+                    quantity, size.toString(), size.getPrice())));
+        }
+        
+        // Add Chips
+        if (chips > 0) {
+            summary.append(String.format("Chips: %d ($%.2f each)\n", chips, CHIPS_PRICE));
+        }
+        
+        // Total
+        summary.append(String.format("\nTotal Price: $%.2f\n", totalPrice));
+        
+        return summary.toString();
+    }
+
     private boolean processPayment() {
         return true; // Future implementation
     }
