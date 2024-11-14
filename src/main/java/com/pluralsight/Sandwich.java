@@ -54,4 +54,23 @@ public class Sandwich {
     public void setIsToasted(boolean isToasted) {
         this.isToasted = isToasted;
     }
+
+    public double getPrice() {
+        double price = 0.0;
+
+        // Add bread price if bread exists and has valid size
+        if (bread != null && bread.getBreadSize() != null) {
+            price += bread.getPrice();
+        }
+
+        // Add topping prices
+        if (toppings != null) {
+            for (Topping topping : toppings) {
+                topping.updatePriceBySize(bread.getBreadSize());
+                price += topping.getPrice();
+            }
+        }
+
+        return price;
+    }
 }

@@ -371,23 +371,24 @@ public class Shop {
     
     @FXML
     private void handleBellClick(ActionEvent event) {
-        if (sandwich.getBread() != null) {
-            order.addSandwich(sandwich);
-            updateReceiptDisplay();
-            sandwich = new Sandwich();
-            return;
+        try {
+            if (sandwich.getBread() != null && 
+                sandwich.getBread().getBreadType() != null && 
+                sandwich.getBread().getBreadSize() != null) {
+                
+                order.addSandwich(sandwich);
+                updateReceiptDisplay();
+                resetSandwich();
+            }
+        } catch (NullPointerException e) {
         }
-        updateReceiptDisplay();
     }
 
     @FXML
     private void checkout(ActionEvent event) {
         if (order.getTotalPrice() > 0) {
             order.checkoutGUI();
-            // Reset for next Order
-            order = new Order();
-            sandwich = new Sandwich();
-            bread = new Bread();
+            resetOrder();
             updateReceiptDisplay();
         }
     }
@@ -406,6 +407,8 @@ public class Shop {
 
     @FXML
     public void initialize() {
+        updateReceiptDisplay();
+
         setupGlowEffect(BreadsGlowLeft, BreadsGlowLeftImage, BreadsGlowMiddleImage, BreadsGlowRightImage, BreadsGlowToastImage);
         setupGlowEffect(BreadsGlowMiddle, BreadsGlowMiddleImage, BreadsGlowLeftImage, BreadsGlowRightImage, BreadsGlowToastImage);
         setupGlowEffect(BreadsGlowRight, BreadsGlowRightImage, BreadsGlowLeftImage, BreadsGlowMiddleImage, BreadsGlowToastImage);
@@ -457,5 +460,16 @@ public class Shop {
         setupGlowEffect(Mushroom, MushroomImage, SteakImage, HamImage, SalamiImage, RoastBeefImage, ChickenImage, BaconImage, AmericanImage, ProvoloneImage, ChedderImage, SwissImage, LettuceImage, BellpepperImage, OnionImage, TomatoImage, JalapenoImage, CucumberImage, PickleImage, AvacadoImage);
 
         setupGlowEffect(Bell, BellGlow);
+    }
+
+    private void resetOrder() {
+        order = new Order();
+        bread = new Bread();
+        sandwich = new Sandwich(bread, new HashSet<>(), false);
+    }
+
+    private void resetSandwich() {
+        bread = new Bread();
+        sandwich = new Sandwich(bread, new HashSet<>(), false);
     }
 }

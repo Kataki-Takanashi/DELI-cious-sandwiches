@@ -61,13 +61,6 @@ public class OrderUserInterface {
             Sandwich sandwich = order.getSandwiches().get(0);
             StringBuilder summary = new StringBuilder();
             
-            // Check if sandwich is incomplete
-            if (sandwich.getBread() == null || 
-                sandwich.getBread().getBreadType() == null || 
-                sandwich.getBread().getBreadSize() == null) {
-                return "[incomplete sandwich]";
-            }
-            
             // Add bread size and type
             summary.append("[")
                    .append(sandwich.getBread().getBreadSize().getInches())
@@ -136,7 +129,7 @@ public class OrderUserInterface {
             }
         }
 
-        // These are the summaries that are displayed in the main menu, they help the user see what they have in thir order and the price
+        // These are the summaries that are displayed in the main menu, they help the user see what they have in thir order and the pricex
         String sandwichSummary = formatSandwichSummary(order);
 
         String drinkCount = order.getDrinks().values().stream().mapToInt(Integer::intValue).sum() > 0

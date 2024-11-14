@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.pluralsight.enums.DrinkSize;
 import com.pluralsight.utils.Console;
@@ -68,35 +69,23 @@ public class Order {
     }
 
     private void updateTotalPrice() {
-        double total = 0.0;
+        totalPrice = 0.0;
         
         // Add sandwich prices
         for (Sandwich sandwich : sandwiches) {
-            // Add bread price
-            if (sandwich.getBread() != null) {
-                total += sandwich.getBread().getPrice();
-            }
-            
-            // Add topping prices
-            if (sandwich.getToppings() != null) {
-                for (Topping topping : sandwich.getToppings()) {
-                    topping.updatePriceBySize(sandwich.getBread().getBreadSize());
-                    total += topping.getPrice();
-                }
+            if (sandwich.getBread() != null && 
+                sandwich.getBread().getBreadType() != null && 
+                sandwich.getBread().getBreadSize() != null) {
+                totalPrice += sandwich.getPrice();
             }
         }
         
-        // Add drink price (if selected)
-        for (Map.Entry<DrinkSize, Integer> entry : drinks.entrySet()) {
-            DrinkSize size = entry.getKey();
-            int quantity = entry.getValue();
-            total += size.getPrice() * quantity;
-        }
+        // Add drinks
+        drinks.forEach((size, quantity) -> 
+            totalPrice += size.getPrice() * quantity);
         
-        // Add chips price (if selected)
-        total += CHIPS_PRICE * chips;
-        
-        this.totalPrice = total;
+        // Add chips
+        totalPrice += chips * CHIPS_PRICE;
     }
 
     public String generateOrderSummary() {
@@ -189,11 +178,19 @@ public class Order {
         StringBuilder summary = new StringBuilder();
         // Add Sandwiches
         summary.append("Sandwiches:\n");
-        if (sandwiches.isEmpty()) {
+        
+        // Filter out incomplete sandwiches
+        List<Sandwich> completeSandwiches = sandwiches.stream()
+            .filter(sandwich -> sandwich.getBread() != null && 
+                              sandwich.getBread().getBreadType() != null && 
+                              sandwich.getBread().getBreadSize() != null)
+            .collect(Collectors.toList());
+        
+        if (completeSandwiches.isEmpty()) {
             summary.append("No sandwiches ordered\n");
         } else {
-            for (int i = 0; i < sandwiches.size(); i++) {
-                Sandwich sandwich = sandwiches.get(i);
+            for (int i = 0; i < completeSandwiches.size(); i++) {
+                Sandwich sandwich = completeSandwiches.get(i);
                 summary.append(String.format("%d. %s bread (%d\") %s\n", 
                     i + 1,
                     sandwich.getBread().getBreadType().toString(),
