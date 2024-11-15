@@ -88,7 +88,7 @@ public class TestSandwichPricing {
         bread.setBreadSize(BreadSize.FOUR_INCH);
         sandwich.setBread(bread);
         order.addSandwich(sandwich);
-        order.addDrinks(1);
+        order.addDrink(DrinkSize.MEDIUM);
         order.addChips(1);
         assertEquals(9.50, order.getTotalPrice(), 0.01); // 5.50 sandwich + 2.50 drink + 1.50 chips
     }

@@ -35,7 +35,7 @@ public class Main {
     private static int displayMainMenu() throws IllegalArgumentException { // TODO: Add Order History, Menu
         String menu = """
 
-                Welcome to the Shop!
+                Welcome to the Ali's DELI-cious Sandwich Shop!
                 Please select from the following choices:
                 \t1. New Order
                 \t0. Exit

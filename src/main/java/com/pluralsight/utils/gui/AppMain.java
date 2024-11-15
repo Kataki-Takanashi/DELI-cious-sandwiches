@@ -2,10 +2,12 @@ package com.pluralsight.utils.gui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -31,10 +33,29 @@ public class AppMain extends Application {
         stage.getIcons().add(icon);
         stage.setTitle("Ali's Sandwich Shop");
 
+        stage.setScene(scene);
+        
+        // Force the scene to calculate its size
+        root.applyCss();
+        root.layout();
+        
+        // Get screen dimensions
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        
+        // Calculate center position
+        double centerX = (screenBounds.getWidth() - root.prefWidth(-1)) / 2;
+        double centerY = (screenBounds.getHeight() - root.prefHeight(-1)) / 2;
+        
+        // Set position
+        stage.setX(centerX);
+        stage.setY(centerY);
+
+        // Show and force focus
+        stage.show();
+        stage.toFront();
+        stage.requestFocus();
+        
         Home controller = loader.getController();
         controller.setStage(stage);
-
-        stage.setScene(scene);
-        stage.show();
     }
 }
