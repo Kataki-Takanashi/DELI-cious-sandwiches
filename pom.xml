@@ -6,7 +6,7 @@
 
     <groupId>com.pluralsight</groupId>
     <artifactId>DELI-cious-sandwiches</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.9.1</version> <!-- Update this version number -->
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -123,7 +123,7 @@
                 <version>1.6.0</version>
                 <configuration>
                     <name>DELIcious-Sandwiches</name>
-                    <appVersion>1.0.0</appVersion>
+                    <appVersion>${project.version}</appVersion>
                     <vendor>AliSandwichShop</vendor>
                     <destination>target/dist</destination>
                     <module>com.pluralsight/com.pluralsight.utils.gui.AppMain</module>
@@ -157,7 +157,7 @@
                         <version>1.6.0</version>
                         <configuration>
                             <name>DELIcious-Sandwiches</name>
-                            <appVersion>1.0.0</appVersion>
+                            <appVersion>${project.version}</appVersion>
                             <vendor>AliSandwichShop</vendor>
                             <destination>target/dist/arm64</destination>
                             <module>com.pluralsight/com.pluralsight.utils.gui.AppMain</module>
@@ -193,7 +193,7 @@
                         <version>1.6.0</version>
                         <configuration>
                             <name>DELIcious-Sandwiches</name>
-                            <appVersion>1.0.0</appVersion>
+                            <appVersion>${project.version}</appVersion>
                             <vendor>AliSandwichShop</vendor>
                             <destination>target/dist/x64</destination>
                             <module>com.pluralsight/com.pluralsight.utils.gui.AppMain</module>
@@ -229,7 +229,7 @@
                         <version>1.6.0</version>
                         <configuration>
                             <name>DELIcious-Sandwiches</name>
-                            <appVersion>1.0.0</appVersion>
+                            <appVersion>0.9.1.0</appVersion>
                             <vendor>AliSandwichShop</vendor>
                             <destination>target/dist/windows</destination>
                             <module>com.pluralsight/com.pluralsight.utils.gui.AppMain</module>
@@ -237,13 +237,12 @@
                             <javaOptions>
                                 <option>-Dfile.encoding=UTF-8</option>
                             </javaOptions>
-                            <!-- Windows specific -->
                             <winMenu>true</winMenu>
                             <winDirChooser>true</winDirChooser>
                             <winShortcut>true</winShortcut>
-                            <winPerUserInstall>true</winPerUserInstall>
-                            <winConsole>false</winConsole>
                             <icon>${project.basedir}/icons/icon.ico</icon>
+                            <type>MSI</type>
+                            <winPerUserInstall>true</winPerUserInstall>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -261,7 +260,7 @@
                         <version>1.6.0</version>
                         <configuration>
                             <name>DELIcious-Sandwiches</name>
-                            <appVersion>1.0.0</appVersion>
+                            <appVersion>${project.version}</appVersion>
                             <vendor>AliSandwichShop</vendor>
                             <destination>target/dist/linux</destination>
                             <module>com.pluralsight/com.pluralsight.utils.gui.AppMain</module>
@@ -269,11 +268,9 @@
                             <javaOptions>
                                 <option>-Dfile.encoding=UTF-8</option>
                             </javaOptions>
-                            <!-- Linux specific -->
                             <linuxPackageName>delicious-sandwiches</linuxPackageName>
                             <linuxAppCategory>Utility</linuxAppCategory>
                             <linuxShortcut>true</linuxShortcut>
-                            <!-- Creates both .deb and .rpm -->
                             <linuxAppRelease>1</linuxAppRelease>
                             <linuxPackageDepends>
                                 <depend>java-runtime</depend>
