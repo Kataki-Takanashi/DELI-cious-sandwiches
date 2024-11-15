@@ -34,7 +34,7 @@ The application stores receipts locally in the user's home directory under `~/DE
 
 <h2 align="center">Class Diagram</h2>
 <p align="center">
-    <img src="src/main/resources/diagram2.svg" alt="Class Diagram" width="700"/>
+    <img src="src/main/resources/diagram3.svg" alt="Class Diagram" width="700"/>
 </p>
 
 ---
