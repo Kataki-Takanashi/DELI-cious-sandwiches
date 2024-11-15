@@ -18,9 +18,8 @@ public class Main {
                         OrderUserInterface.orderScreen();
                         break;
                     case 999:
-                        // GUI
                         Application.launch(AppMain.class, args);
-                        break; // TODO: Implement GUI, Quick Order. (Quick Order shows the last 5 unique orders)
+                        break; // TODO: Quick Order. (Quick Order shows the last 5 unique orders)
                     case 0: // Possibly allow for users to make their own named orders or "presets"
                         System.out.println("Exiting Shop...");
                         break;
