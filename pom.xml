@@ -13,6 +13,8 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <javafx.version>20</javafx.version>
+        <javafx.modules.path>${java.home}/lib</javafx.modules.path>
+        <maven.test.skip>true</maven.test.skip>
     </properties>
 
     <dependencies>
@@ -44,30 +46,243 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>Releases/**</exclude>
+                    <exclude>**/*.sh</exclude>
+                    <exclude>**/temp/**</exclude>
+                </excludes>
+            </resource>
+        </resources>
         <plugins>
             <!-- JavaFX Maven Plugin -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
+                <configuration>
+                    <compress>2</compress>
+                    <noHeaderFiles>true</noHeaderFiles>
+                    <stripDebug>true</stripDebug>
+                    <noManPages>true</noManPages>
+                    <launcher>delicious</launcher>
+                    <mainClass>com.pluralsight.utils.gui.AppMain</mainClass>
+                    <jlinkImageName>delicious-runtime</jlinkImageName>
+                    <jlinkZipName>delicious-runtime-zip</jlinkZipName>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.1</version>
                 <executions>
                     <execution>
+                        <phase>package</phase>
                         <goals>
-                            <goal>run</goal>
+                            <goal>shade</goal>
                         </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>com.pluralsight.Main</mainClass>
+                                </transformer>
+                            </transformers>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
                 <configuration>
-                    <mainClass>com.pluralsight.utils.gui.AppMain</mainClass> <!-- Change this to your actual main class -->
-                    <!-- Pass the module-path for macOS -->
-                    <options>
-                        <option>--module-path</option>
-                        <option>${java.home}/lib/javafx-sdk/lib</option>
-                        <option>--add-modules</option>
-                        <option>javafx.controls,javafx.fxml</option>
-                    </options>
+                    <mainClass>com.pluralsight.utils.gui.AppMain</mainClass>
+                    <arguments>
+                        <argument>--module-path</argument>
+                        <argument>${javafx.version}</argument>
+                        <argument>--add-modules</argument>
+                        <argument>javafx.controls,javafx.fxml,javafx.graphics</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.panteleyev</groupId>
+                <artifactId>jpackage-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                    <name>DELIcious-Sandwiches</name>
+                    <appVersion>1.0.0</appVersion>
+                    <vendor>AliSandwichShop</vendor>
+                    <destination>target/dist</destination>
+                    <module>com.pluralsight/com.pluralsight.utils.gui.AppMain</module>
+                    <runtimeImage>target/delicious-runtime</runtimeImage>
+                    <javaOptions>
+                        <option>-Dfile.encoding=UTF-8</option>
+                    </javaOptions>
+                    <macPackageIdentifier>com.alisandwichshop.delicious</macPackageIdentifier>
+                    <macPackageName>DELIcious-Sandwiches</macPackageName>
+                    <input>${project.build.directory}/classes</input>
+                    <jpackageArgs>
+                        <arg>--resource-dir</arg>
+                        <arg>${project.build.directory}/classes</arg>
+                        <arg>--exclude-files</arg>
+                        <arg>**/Releases/**</arg>
+                    </jpackageArgs>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <!-- Profile for Apple Silicon (ARM64) -->
+        <profile>
+            <id>mac-arm64</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.panteleyev</groupId>
+                        <artifactId>jpackage-maven-plugin</artifactId>
+                        <version>1.6.0</version>
+                        <configuration>
+                            <name>DELIcious-Sandwiches</name>
+                            <appVersion>1.0.0</appVersion>
+                            <vendor>AliSandwichShop</vendor>
+                            <destination>target/dist/arm64</destination>
+                            <module>com.pluralsight/com.pluralsight.utils.gui.AppMain</module>
+                            <runtimeImage>target/delicious-runtime</runtimeImage>
+                            <javaOptions>
+                                <option>-Dfile.encoding=UTF-8</option>
+                            </javaOptions>
+                            <macPackageIdentifier>com.alisandwichshop.delicious</macPackageIdentifier>
+                            <macPackageName>DELIcious-Sandwiches</macPackageName>
+                            <jpackageArgs>
+                                <arg>--mac-package-arch</arg>
+                                <arg>aarch64</arg>
+                            </jpackageArgs>
+                            <icon>${project.basedir}/icons/icon.icns</icon>
+                            <jpackageArgs>
+                                <arg>--mac-package-icon</arg>
+                                <arg>${project.basedir}/icons/icon.icns</arg>
+                            </jpackageArgs>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Profile for Intel Macs (x64) -->
+        <profile>
+            <id>mac-x64</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.panteleyev</groupId>
+                        <artifactId>jpackage-maven-plugin</artifactId>
+                        <version>1.6.0</version>
+                        <configuration>
+                            <name>DELIcious-Sandwiches</name>
+                            <appVersion>1.0.0</appVersion>
+                            <vendor>AliSandwichShop</vendor>
+                            <destination>target/dist/x64</destination>
+                            <module>com.pluralsight/com.pluralsight.utils.gui.AppMain</module>
+                            <runtimeImage>target/delicious-runtime</runtimeImage>
+                            <javaOptions>
+                                <option>-Dfile.encoding=UTF-8</option>
+                            </javaOptions>
+                            <macPackageIdentifier>com.alisandwichshop.delicious</macPackageIdentifier>
+                            <macPackageName>DELIcious-Sandwiches</macPackageName>
+                            <jpackageArgs>
+                                <arg>--mac-package-arch</arg>
+                                <arg>x64</arg>
+                            </jpackageArgs>
+                            <icon>${project.basedir}/icons/icon.icns</icon>
+                            <jpackageArgs>
+                                <arg>--mac-package-icon</arg>
+                                <arg>${project.basedir}/icons/icon.icns</arg>
+                            </jpackageArgs>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Windows Profile -->
+        <profile>
+            <id>windows</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.panteleyev</groupId>
+                        <artifactId>jpackage-maven-plugin</artifactId>
+                        <version>1.6.0</version>
+                        <configuration>
+                            <name>DELIcious-Sandwiches</name>
+                            <appVersion>1.0.0</appVersion>
+                            <vendor>AliSandwichShop</vendor>
+                            <destination>target/dist/windows</destination>
+                            <module>com.pluralsight/com.pluralsight.utils.gui.AppMain</module>
+                            <runtimeImage>target/delicious-runtime</runtimeImage>
+                            <javaOptions>
+                                <option>-Dfile.encoding=UTF-8</option>
+                            </javaOptions>
+                            <!-- Windows specific -->
+                            <winMenu>true</winMenu>
+                            <winDirChooser>true</winDirChooser>
+                            <winShortcut>true</winShortcut>
+                            <winPerUserInstall>true</winPerUserInstall>
+                            <winConsole>false</winConsole>
+                            <icon>${project.basedir}/icons/icon.ico</icon>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Linux Profile -->
+        <profile>
+            <id>linux</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.panteleyev</groupId>
+                        <artifactId>jpackage-maven-plugin</artifactId>
+                        <version>1.6.0</version>
+                        <configuration>
+                            <name>DELIcious-Sandwiches</name>
+                            <appVersion>1.0.0</appVersion>
+                            <vendor>AliSandwichShop</vendor>
+                            <destination>target/dist/linux</destination>
+                            <module>com.pluralsight/com.pluralsight.utils.gui.AppMain</module>
+                            <runtimeImage>target/delicious-runtime</runtimeImage>
+                            <javaOptions>
+                                <option>-Dfile.encoding=UTF-8</option>
+                            </javaOptions>
+                            <!-- Linux specific -->
+                            <linuxPackageName>delicious-sandwiches</linuxPackageName>
+                            <linuxAppCategory>Utility</linuxAppCategory>
+                            <linuxShortcut>true</linuxShortcut>
+                            <!-- Creates both .deb and .rpm -->
+                            <linuxAppRelease>1</linuxAppRelease>
+                            <linuxPackageDepends>
+                                <depend>java-runtime</depend>
+                            </linuxPackageDepends>
+                            <icon>${project.basedir}/icons/icon.png</icon>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

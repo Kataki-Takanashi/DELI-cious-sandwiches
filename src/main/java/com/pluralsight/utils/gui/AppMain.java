@@ -21,17 +21,17 @@ public class AppMain extends Application {
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
-        scene.setFill(Color.TRANSPARENT); // Transparent background
-        stage.initStyle(StageStyle.TRANSPARENT); // Makes the window bar transparent
+        scene.setFill(Color.TRANSPARENT);
+        stage.initStyle(StageStyle.TRANSPARENT);
 
         String css = this.getClass().getResource("/styles/Home.css").toExternalForm();
         scene.getStylesheets().add(css);
 
-        Image icon = new Image("images/HomeScreen/icon.png");
+        Image icon = new Image(getClass().getResource("/images/HomeScreen/icon.png").toExternalForm());
         stage.getIcons().add(icon);
         stage.setTitle("Ali's Sandwich Shop");
 
-        Home controller = loader.getController(); // sending the stage to Home
+        Home controller = loader.getController();
         controller.setStage(stage);
 
         stage.setScene(scene);
