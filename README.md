@@ -25,7 +25,7 @@ Key Features:
 - Choose from a variety of fresh, **premium ingredients**
 - Choose from a selection of our Specialties: `BLT` and `Philly Cheesesteak`
 
-The application stores receipts locally in the user's home directory under `~/DELIcious-Sandwiches/receipts` for easy access . Whether you're craving a classic `Philly Cheesesteak` or want to create your own masterpiece, Ali's DELI-cious Sandwich Shop makes ordering a *breeze!*
+The application stores receipts locally in the user's home directory under `~/DELIcious-Sandwiches/receipts` for easy access. Whether you're craving a classic `Philly Cheesesteak` or want to create your own masterpiece, Ali's DELI-cious Sandwich Shop makes ordering a *breeze!*
 
 
 
@@ -104,9 +104,9 @@ The `Meat` enum serves two key purposes:
 2. It handles dynamic pricing based on sandwich size
 
 The `setPriceBySize()` method automatically adjusts the price of `meat` based on the `sandwich length`:
-- `4-inch` sandwiches: Base price (`$1.00`)
-- `8-inch` sandwiches: Double the base price (`$2.00`)
-- `12-inch` sandwiches: Triple the base price (`$3.00`)
+- `4-inch` - Base price (`$1.00`)
+- `8-inch` - Double the base price (`$2.00`)
+- `12-inch` - Triple the base price (`$3.00`)
 
 This design provides a clean, maintainable way to handle pricing logic while ensuring consistency across the application. The use of enums also gives us type safety and prevents `invalid meat selections`.
 
