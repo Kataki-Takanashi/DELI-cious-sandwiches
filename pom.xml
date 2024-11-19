@@ -68,7 +68,7 @@
                     <stripDebug>true</stripDebug>
                     <noManPages>true</noManPages>
                     <launcher>delicious</launcher>
-                    <mainClass>com.pluralsight.utils.gui.AppMain</mainClass>
+                    <mainClass>com.pluralsight.AppMain</mainClass>
                     <jlinkImageName>delicious-runtime</jlinkImageName>
                     <jlinkZipName>delicious-runtime-zip</jlinkZipName>
                 </configuration>
@@ -108,7 +108,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <mainClass>com.pluralsight.utils.gui.AppMain</mainClass>
+                    <mainClass>com.pluralsight.AppMain</mainClass>
                     <arguments>
                         <argument>--module-path</argument>
                         <argument>${javafx.version}</argument>
@@ -126,7 +126,7 @@
                     <appVersion>${project.version}</appVersion>
                     <vendor>AliSandwichShop</vendor>
                     <destination>target/dist</destination>
-                    <module>com.pluralsight/com.pluralsight.utils.gui.AppMain</module>
+                    <module>com.pluralsight/com.pluralsight.AppMain</module>
                     <runtimeImage>target/delicious-runtime</runtimeImage>
                     <javaOptions>
                         <option>-Dfile.encoding=UTF-8</option>
@@ -160,7 +160,7 @@
                             <appVersion>${project.version}</appVersion>
                             <vendor>AliSandwichShop</vendor>
                             <destination>target/dist/arm64</destination>
-                            <module>com.pluralsight/com.pluralsight.utils.gui.AppMain</module>
+                            <module>com.pluralsight/com.pluralsight.AppMain</module>
                             <runtimeImage>target/delicious-runtime</runtimeImage>
                             <javaOptions>
                                 <option>-Dfile.encoding=UTF-8</option>
@@ -196,7 +196,7 @@
                             <appVersion>${project.version}</appVersion>
                             <vendor>AliSandwichShop</vendor>
                             <destination>target/dist/x64</destination>
-                            <module>com.pluralsight/com.pluralsight.utils.gui.AppMain</module>
+                            <module>com.pluralsight/com.pluralsight.AppMain</module>
                             <runtimeImage>target/delicious-runtime</runtimeImage>
                             <javaOptions>
                                 <option>-Dfile.encoding=UTF-8</option>
@@ -232,7 +232,7 @@
                             <appVersion>0.9.1.0</appVersion>
                             <vendor>AliSandwichShop</vendor>
                             <destination>target/dist/windows</destination>
-                            <module>com.pluralsight/com.pluralsight.utils.gui.AppMain</module>
+                            <module>com.pluralsight/com.pluralsight.AppMain</module>
                             <runtimeImage>target/delicious-runtime</runtimeImage>
                             <javaOptions>
                                 <option>-Dfile.encoding=UTF-8</option>
@@ -263,7 +263,7 @@
                             <appVersion>${project.version}</appVersion>
                             <vendor>AliSandwichShop</vendor>
                             <destination>target/dist/linux</destination>
-                            <module>com.pluralsight/com.pluralsight.utils.gui.AppMain</module>
+                            <module>com.pluralsight/com.pluralsight.AppMain</module>
                             <runtimeImage>target/delicious-runtime</runtimeImage>
                             <javaOptions>
                                 <option>-Dfile.encoding=UTF-8</option>

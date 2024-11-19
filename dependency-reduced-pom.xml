@@ -16,7 +16,7 @@
           <stripDebug>true</stripDebug>
           <noManPages>true</noManPages>
           <launcher>delicious</launcher>
-          <mainClass>com.pluralsight.utils.gui.AppMain</mainClass>
+          <mainClass>com.pluralsight.AppMain</mainClass>
           <jlinkImageName>delicious-runtime</jlinkImageName>
           <jlinkZipName>delicious-runtime-zip</jlinkZipName>
         </configuration>
@@ -55,7 +55,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>3.1.0</version>
         <configuration>
-          <mainClass>com.pluralsight.utils.gui.AppMain</mainClass>
+          <mainClass>com.pluralsight.AppMain</mainClass>
           <arguments>
             <argument>--module-path</argument>
             <argument>${javafx.version}</argument>
@@ -73,7 +73,7 @@
           <appVersion>1.0.0</appVersion>
           <vendor>AliSandwichShop</vendor>
           <destination>target/dist</destination>
-          <mainClass>com.pluralsight.utils.gui.AppMain</mainClass>
+          <mainClass>com.pluralsight.AppMain</mainClass>
           <input>target</input>
           <type>APP_IMAGE</type>
           <javaOptions>

@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane fx:id="backgroundPane" prefHeight="950.0" prefWidth="1300.0" stylesheets="@../styles/Shop.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pluralsight.utils.gui.Shop">
+<AnchorPane fx:id="backgroundPane" prefHeight="950.0" prefWidth="1300.0" stylesheets="@../styles/Shop.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pluralsight.gui.Shop">
    <children>
       <ImageView fx:id="MENU" fitHeight="150.0" fitWidth="200.0" layoutX="730.0" layoutY="300.0" scaleX="5.0" scaleY="5.0">
          <image>

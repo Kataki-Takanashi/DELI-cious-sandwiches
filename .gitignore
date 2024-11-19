@@ -36,3 +36,19 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Distribution / Releases ###
+releases/
+dist/
+*.zip
+*.tar.gz
+*.jar
+dependency-reduced-pom.xml
+
+# Build artifacts
+*.dmg
+*.msi
+*.exe
+*.deb
+*.rpm
+*.pkg
